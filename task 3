@@ -1,0 +1,38 @@
+using System;
+
+class Program
+{
+    static Random random = new Random();
+    
+    static void FillArrayRandomly(int[] array, int index)
+    {
+        if (index >= 0)
+        {
+            array[index] = random.Next(100); // заполняем текущий элемент случайным числом от 0 до 99
+            FillArrayRandomly(array, index - 1); // вызываем рекурсивно с уменьшающимся индексом
+        }
+    }
+
+    static void RecursiveArray(int[] array, int index)
+    {
+        if (index >= 0)
+        {
+            Console.WriteLine(array[index]); // выводим текущий элемент
+            RecursiveArray(array, index - 1); // вызываем рекурсивно с уменьшающимся индексом
+        }
+    }
+
+    static void Main()
+    {
+        int size;
+
+        Console.WriteLine("Введите размер массива:");
+        size = int.Parse(Console.ReadLine());
+
+        int[] array = new int[size];
+        FillArrayRandomly(array, size - 1); // вызов рекурсивной функции для заполнения массива
+
+        Console.WriteLine("Элементы массива, начиная с конца:");
+        RecursiveArray(array, size - 1); // вызов рекурсивной функции для вывода элементов массива
+    }
+}
